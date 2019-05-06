@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="usuario")
 
@@ -16,28 +17,28 @@ public class Usuario {
     
     private String contrasenausuario;
 
-	public String getNombreUsuario() {
+	public String getNombreusuario() {
 		return nombreusuario;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreusuario = nombreUsuario;
+	public void setNombreusuario(String nombreusuario) {
+		this.nombreusuario = nombreusuario;
 	}
 
-	public String getEmailUsuario() {
+	public String getEmailusuario() {
 		return emailusuario;
 	}
 
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailusuario = emailUsuario;
+	public void setEmailusuario(String emailusuario) {
+		this.emailusuario = emailusuario;
 	}
 
-	public String getContrasenaUsuario() {
+	public String getContrasenausuario() {
 		return contrasenausuario;
 	}
 
-	public void setContrasenaUsuario(String contrasenaUsuario) {
-		this.contrasenausuario = contrasenaUsuario;
+	public void setContrasenausuario(String contrasenausuario) {
+		this.contrasenausuario = contrasenausuario;
 	}
 
 	

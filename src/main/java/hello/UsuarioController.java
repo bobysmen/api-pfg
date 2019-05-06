@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,15 +21,15 @@ public class UsuarioController {
 	private UsuarioRepository userRepository;
 	
 	@PostMapping("/add")
-	public @ResponseBody String add (String email, String password, String name) {
+	public @ResponseBody Usuario add (@RequestBody Usuario a) {
+		Usuario usuario = null;
 		
-		Usuario n = new Usuario();
-		n.setNombreUsuario(name);
-		n.setEmailUsuario(email);
-		n.setContrasenaUsuario(password);
+		if (!userRepository.findById(a.getEmailusuario()).isPresent()) {
+			usuario = a;
+			userRepository.save(usuario);
+		}
 	
-		userRepository.save(n);
-		return "Saved";
+		return usuario;
 	}
 	
 	@PostMapping("/delete")
@@ -43,7 +44,7 @@ public class UsuarioController {
 	public @ResponseBody Usuario login(String email, String password) {
 		Usuario u = null;
 		Optional<Usuario> opt = userRepository.findById(email);
-		if (opt.isPresent() && opt.get().getContrasenaUsuario().equals(password)){
+		if (opt.isPresent() && opt.get().getContrasenausuario().equals(password)){
 			u = opt.get();
 		}
 		return u;
@@ -57,8 +58,8 @@ public class UsuarioController {
 		if (userRepository.findById(email).isPresent()) {
 			u = userRepository.findById(email).get();
 			
-			u.setNombreUsuario(name);
-			u.setContrasenaUsuario(password);
+			u.setNombreusuario(name);
+			u.setContrasenausuario(password);
 			
 			userRepository.save(u);
 			
