@@ -32,19 +32,19 @@ public class UsuarioController {
 		return usuario;
 	}
 	
-	@PostMapping("/delete")
+	/*@PostMapping("/delete")
 	public @ResponseBody String delete (@RequestParam String email, @RequestParam String password) {
 		
 		Usuario n = login(email, password);
 		userRepository.delete(n);
 		return "Deleted";
-	}
+	}*/
 	
 	@PostMapping("/login")
-	public @ResponseBody Usuario login(String email, String password) {
+	public @ResponseBody Usuario login(@RequestBody Usuario a) {
 		Usuario u = null;
-		Optional<Usuario> opt = userRepository.findById(email);
-		if (opt.isPresent() && opt.get().getContrasenausuario().equals(password)){
+		Optional<Usuario> opt = userRepository.findById(a.getEmailusuario());
+		if (opt.isPresent() && opt.get().getContrasenausuario().equals(a.getContrasenausuario())){
 			u = opt.get();
 		}
 		return u;
