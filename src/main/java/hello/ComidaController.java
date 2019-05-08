@@ -1,5 +1,9 @@
 package hello;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +19,28 @@ public class ComidaController {
 	private ComidaRepository comidaRepository;
 	
 	@PostMapping("/add")
-	public @ResponseBody String add (@RequestBody Comida c) {
-		
-		
+	public @ResponseBody Comida add (@RequestBody Comida c) {
+
 		comidaRepository.save(c);
-		return "Saved";
+		return c;
+	}
+	
+	@PostMapping("/all")
+	public @ResponseBody Iterable<Comida> add (String idusuario) {
+
+		Iterable<Comida> list = new ArrayList<>();
+		Iterator<Comida> iterator;
+		
+		list = comidaRepository.findAll();
+		
+		iterator = list.iterator();
+		
+		while (iterator.hasNext()) {
+			if (!iterator.next().getIdusuario().equals(idusuario)) {
+				iterator.remove();
+			}
+		}
+		return list;
 	}
 
 }
