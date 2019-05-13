@@ -19,7 +19,7 @@ public class ComidaController {
 	
 	@PostMapping("/add")
 	public @ResponseBody Comida add (@RequestBody Comida c) {
-
+		
 		comidaRepository.save(c);
 		return c;
 	}
