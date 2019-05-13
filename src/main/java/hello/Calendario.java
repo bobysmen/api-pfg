@@ -12,9 +12,7 @@ public class Calendario {
 	@EmbeddedId
 	private CalendarioId calendarioId;
 	
-	private String nombrecomida;
-
-	
+	private String nombrecalendario;
 
 	public CalendarioId getCalendarioId() {
 		return calendarioId;
@@ -24,12 +22,12 @@ public class Calendario {
 		this.calendarioId = calendarioId;
 	}
 
-	public String getNombrecomida() {
-		return nombrecomida;
+	public String getNombrecalendario() {
+		return nombrecalendario;
 	}
 
-	public void setNombrecomida(String nombrecomida) {
-		this.nombrecomida = nombrecomida;
+	public void setNombrecalendario(String nombrecalendario) {
+		this.nombrecalendario = nombrecalendario;
 	}
 	
 	

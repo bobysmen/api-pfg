@@ -25,7 +25,7 @@ public class ComidaController {
 	}
 	
 	@PostMapping("/all")
-	public @ResponseBody Iterable<Comida> add (String idusuario) {
+	public @ResponseBody Iterable<Comida> all (String idusuario) {
 
 		Iterable<Comida> list = new ArrayList<>();
 		Iterator<Comida> iterator;

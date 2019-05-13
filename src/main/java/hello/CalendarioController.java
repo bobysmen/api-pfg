@@ -2,6 +2,7 @@ package hello;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,12 +19,30 @@ public class CalendarioController {
 	private CalendarioRepository calendarioRepository;
 	
 	@PostMapping("/add")
-	public @ResponseBody Calendario add (@RequestBody Calendario c) {
+	public @ResponseBody Calendario add (String idusuario, String nombrecalendario) {
+		Calendario c = new Calendario();
+		CalendarioId id = new CalendarioId();
+		Iterable<Calendario> list = new ArrayList<>();
+
+		list = calendarioRepository.findAll();
 		
+		
+		
+		list.forEach((n) -> {
+			if (n.getCalendarioId().getIdcalendario() >= id.getIdcalendario()) {
+				id.setIdcalendario(n.getCalendarioId().getIdcalendario() +1);
+			}
+		});
+		
+		
+		id.setIdusuario(idusuario);
+		
+		c.setCalendarioId(id);
+		c.setNombrecalendario(nombrecalendario);
 		calendarioRepository.save(c);
 		return c;
 	}
-	
+
 	@PostMapping("/all")
 	public @ResponseBody Iterable<Calendario> add (int idcalendario, String idusuario) {
 
@@ -44,7 +63,16 @@ public class CalendarioController {
 	}
 	
 	@PostMapping("/delete")
-	public @ResponseBody Calendario delete (@RequestBody Calendario c) {
+	public @ResponseBody Calendario delete (String idusuario, int idcalendario) {
+		Calendario c = null;
+		CalendarioId id = new CalendarioId();
+		
+		id.setIdcalendario(idcalendario);
+		id.setIdusuario(idusuario);
+		
+		if (calendarioRepository.findById(id).isPresent()) {
+			c = calendarioRepository.findById(id).get();
+		}
 		
 		calendarioRepository.delete(c);
 		return c;
