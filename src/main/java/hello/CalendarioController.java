@@ -84,9 +84,17 @@ public class CalendarioController {
 	}
 	
 	@PostMapping("/edit")
-	public @ResponseBody Calendario edit (@RequestBody Calendario c) {
+	public @ResponseBody CalendarioDTO edit (@RequestBody CalendarioDTO c) {
+		Calendario cal = new Calendario();
+		CalendarioId id = new CalendarioId();
 		
-		calendarioRepository.save(c);
+		id.setIdcalendario(c.getIdCalendario());
+		id.setIdusuario(c.getIdUsuario());
+		
+		cal.setCalendarioId(id);
+		cal.setNombrecalendario(c.getNombreCalendario());
+		
+		calendarioRepository.save(cal);
 		return c;
 	}
 
