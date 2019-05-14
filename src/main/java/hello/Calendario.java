@@ -30,8 +30,4 @@ public class Calendario {
 		this.nombrecalendario = nombrecalendario;
 	}
 	
-	
-	
-	
-
 }

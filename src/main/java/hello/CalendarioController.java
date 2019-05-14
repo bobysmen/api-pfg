@@ -1,8 +1,8 @@
 package hello;
 
+import java.awt.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,8 +19,9 @@ public class CalendarioController {
 	private CalendarioRepository calendarioRepository;
 	
 	@PostMapping("/add")
-	public @ResponseBody Calendario add (String idusuario, String nombrecalendario) {
+	public @ResponseBody CalendarioDTO add (String idusuario, String nombrecalendario) {
 		Calendario c = new Calendario();
+		CalendarioDTO cal;
 		CalendarioId id = new CalendarioId();
 		Iterable<Calendario> list = new ArrayList<>();
 
@@ -40,14 +41,18 @@ public class CalendarioController {
 		c.setCalendarioId(id);
 		c.setNombrecalendario(nombrecalendario);
 		calendarioRepository.save(c);
-		return c;
+		
+		cal = new CalendarioDTO(c.getCalendarioId().getIdcalendario(), c.getCalendarioId().getIdusuario(), c.getNombrecalendario());
+		return cal;
 	}
 
 	@PostMapping("/all")
-	public @ResponseBody Iterable<Calendario> add (int idcalendario, String idusuario) {
+	public @ResponseBody ArrayList<CalendarioDTO> all (String idusuario) {
 
 		Iterable<Calendario> list = new ArrayList<>();
 		Iterator<Calendario> iterator;
+		
+	    ArrayList<CalendarioDTO> listDTO = new ArrayList<>(); 
 		
 		list = calendarioRepository.findAll();
 		
@@ -55,11 +60,11 @@ public class CalendarioController {
 		
 		while (iterator.hasNext()) {
 			Calendario calendar = iterator.next();
-			if (!calendar.getCalendarioId().getIdusuario().equals(idusuario) || calendar.getCalendarioId().getIdcalendario() != idcalendario) {
-				iterator.remove();
+			if (calendar.getCalendarioId().getIdusuario().equals(idusuario)) {
+				listDTO.add(new CalendarioDTO(calendar.getCalendarioId().getIdcalendario(), calendar.getCalendarioId().getIdusuario(), calendar.getNombrecalendario()));
 			}
 		}
-		return list;
+		return listDTO;
 	}
 	
 	@PostMapping("/delete")
