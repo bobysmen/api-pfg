@@ -62,11 +62,11 @@ public class SemanaController {
 	}
 	
 	@PostMapping("/delete")
-	public @ResponseBody Semana delete (String idusuario, int idcalendario) {
+	public @ResponseBody Semana delete (String idusuario, int idsemana) {
 		Semana c = null;
 		SemanaId id = new SemanaId();
 		
-		id.setIdsemana(idcalendario);
+		id.setIdsemana(idsemana);
 		id.setIdusuario(idusuario);
 		
 		if (semanaRepository.findById(id).isPresent()) {
