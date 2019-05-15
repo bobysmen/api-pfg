@@ -12,11 +12,11 @@ public class SemanaDTO {
         this.nombreSemana = nombreSemana;
     }
 
-    public int getIdsemana() {
+    public int getIdSemana() {
         return idSemana;
     }
 
-    public void setIdsemana(int idSemana) {
+    public void setIdSemana(int idSemana) {
         this.idSemana = idSemana;
     }
 
