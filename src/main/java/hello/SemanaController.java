@@ -82,7 +82,7 @@ public class SemanaController {
 		Semana cal = new Semana();
 		SemanaId id = new SemanaId();
 		
-		id.setIdsemana(c.getIdsemana());
+		id.setIdsemana(c.getIdSemana());
 		id.setIdusuario(c.getIdUsuario());
 		
 		cal.setSemanaId(id);

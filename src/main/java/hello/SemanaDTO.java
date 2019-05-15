@@ -13,14 +13,14 @@ public class SemanaDTO {
     }
 
     public int getIdSemana() {
-        return idSemana;
-    }
+		return idSemana;
+	}
 
-    public void setIdSemana(int idSemana) {
-        this.idSemana = idSemana;
-    }
+	public void setIdSemana(int idSemana) {
+		this.idSemana = idSemana;
+	}
 
-    public String getIdUsuario() {
+	public String getIdUsuario() {
         return idUsuario;
     }
 
