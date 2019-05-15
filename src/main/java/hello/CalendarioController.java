@@ -50,20 +50,16 @@ public class CalendarioController {
 	public @ResponseBody ArrayList<CalendarioDTO> all (String idusuario) {
 
 		Iterable<Calendario> list = new ArrayList<>();
-		Iterator<Calendario> iterator;
 		
 	    ArrayList<CalendarioDTO> listDTO = new ArrayList<>(); 
 		
 		list = calendarioRepository.findAll();
 		
-		iterator = list.iterator();
-		
-		while (iterator.hasNext()) {
-			Calendario calendar = iterator.next();
+		list.forEach(calendar -> {
 			if (calendar.getCalendarioId().getIdusuario().equals(idusuario)) {
 				listDTO.add(new CalendarioDTO(calendar.getCalendarioId().getIdcalendario(), calendar.getCalendarioId().getIdusuario(), calendar.getNombrecalendario()));
 			}
-		}
+		});
 		return listDTO;
 	}
 	

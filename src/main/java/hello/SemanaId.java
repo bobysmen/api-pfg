@@ -10,36 +10,36 @@ import javax.validation.constraints.NotNull;
 public class SemanaId implements Serializable{
 	
 	@NotNull
-	private int idSemana;
+	private int idsemana;
 	
 	@NotNull
-	private String idUsuario;
+	private String idusuario;
 	
 	public SemanaId() {
 		
 	}
 
-	public SemanaId(int idSemana, String idUsuario) {
-		this.idSemana = idSemana;
-		this.idUsuario = idUsuario;
-	}
-
-	public int getIdSemana() {
-		return idSemana;
-	}
-
-	public void setIdSemana(int idSemana) {
-		this.idSemana = idSemana;
-	}
-
-	public String getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
+	public SemanaId(int idsemana, String idusuario) {
+		this.idsemana = idsemana;
+		this.idusuario = idusuario;
 	}
 	
+	public int getIdsemana() {
+		return idsemana;
+	}
+
+	public void setIdsemana(int idsemana) {
+		this.idsemana = idsemana;
+	}
+
+	public String getIdusuario() {
+		return idusuario;
+	}
+
+	public void setIdusuario(String idusuario) {
+		this.idusuario = idusuario;
+	}
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,14 +47,14 @@ public class SemanaId implements Serializable{
 
         SemanaId that = (SemanaId) o;
 
-        if (!(idSemana == that.idSemana)) return false;
-        return idUsuario.equals(that.idUsuario);
+        if (!(idsemana == that.idsemana)) return false;
+        return idusuario.equals(that.idusuario);
     }
 
     @Override
     public int hashCode() {
-        int result = idSemana;
-        result = 31 * result + idUsuario.hashCode();
+        int result = idsemana;
+        result = 31 * result + idusuario.hashCode();
         return result;
     }
 

@@ -12,14 +12,14 @@ public class Semana {
 	@EmbeddedId
 	private SemanaId semanaId;
 	
-	private String nombreSemana;
+	private String nombresemana;
 	
 	public Semana() {
 	}
 
-	public Semana(SemanaId semanaId, String nombreSemana) {
+	public Semana(SemanaId semanaId, String nombresemana) {
 		this.semanaId = semanaId;
-		this.nombreSemana = nombreSemana;
+		this.nombresemana = nombresemana;
 	}
 
 	public SemanaId getSemanaId() {
@@ -30,12 +30,12 @@ public class Semana {
 		this.semanaId = semanaId;
 	}
 
-	public String getNombreSemana() {
-		return nombreSemana;
+	public String getNombresemana() {
+		return nombresemana;
 	}
 
-	public void setNombreSemana(String nombreSemana) {
-		this.nombreSemana = nombreSemana;
+	public void setNombresemana(String nombresemana) {
+		this.nombresemana = nombresemana;
 	}
 
 }
