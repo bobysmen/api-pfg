@@ -32,10 +32,10 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/name")
-	public @ResponseBody String getName (String idusuario) {
+	public @ResponseBody Usuario getName (String idusuario) {
 		
 		
-		return userRepository.findById(idusuario).get().getNombreusuario();
+		return userRepository.findById(idusuario).get();
 	}
 	
 	/*@PostMapping("/delete")
