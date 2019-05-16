@@ -31,6 +31,13 @@ public class UsuarioController {
 		return usuario;
 	}
 	
+	@PostMapping("/name")
+	public @ResponseBody String getName (String idusuario) {
+		
+		
+		return userRepository.findById(idusuario).get().getNombreusuario();
+	}
+	
 	/*@PostMapping("/delete")
 	public @ResponseBody String delete (@RequestParam String email, @RequestParam String password) {
 		
