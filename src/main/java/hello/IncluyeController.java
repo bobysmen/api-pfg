@@ -1,9 +1,11 @@
 package hello;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,21 +17,49 @@ public class IncluyeController {
 	private IncluyeRepository incluyeRepository;
 	
 	@PostMapping("/add")
-	public @ResponseBody IncluyeDTO add (@RequestBody IncluyeDTO i) {
+	public @ResponseBody IncluyeDTO add (String idtramo, String idusuario, int idsemana, boolean escategoria,
+			int idcomidaprincipal, int idcomidasecundaria) {
 		Incluye incluye = new Incluye();
 		IncluyeId id = new IncluyeId();
+		Iterable<Incluye> list = new ArrayList<>();
+		Iterator<Incluye> iterator;
+		Incluye aux;
+		IncluyeDTO dto = new IncluyeDTO();
 		
-		id.setIdcomidaprincipal(i.getIdcomidaprincipal());
-		id.setIdcomidasecundaria(i.getIdcomidasecundaria());
-		id.setIdsemana(i.getIdsemana());
-		id.setIdtramo(i.getIdtramo());
-		id.setIdusuario(i.getIdusuario());
+		int sec = 1;
 		
-		incluye.setSecuencialidad(i.getSecuencialidad());
-		incluye.setEscategoria(i.isEscategoria());
+		id.setIdcomidaprincipal(idcomidaprincipal);
+		id.setIdcomidasecundaria(idcomidasecundaria);
+		id.setIdsemana(idsemana);
+		id.setIdtramo(idtramo);
+		id.setIdusuario(idusuario);
+		
+		list = incluyeRepository.findAll();
+		
+		iterator = list.iterator();
+		
+		while (iterator.hasNext()) {
+			aux = iterator.next();
+			if (aux.getSecuencialidad() >= sec) {
+				sec = aux.getSecuencialidad() +1;
+			}
+		}
+		
+		incluye.setSecuencialidad(sec);
+		
+		incluye.setEscategoria(escategoria);
 		incluye.setIncluyeid(id);
 		
 		incluyeRepository.save(incluye);
-		return i;
+		
+		dto.setIdtramo(idtramo);
+		dto.setIdusuario(idusuario);
+		dto.setIdsemana(idsemana);
+		dto.setSecuencialidad(sec);
+		dto.setEscategoria(escategoria);
+		dto.setIdcomidaprincipal(idcomidaprincipal);
+		dto.setIdcomidasecundaria(idcomidasecundaria);
+		
+		return dto;
 	}
 }
