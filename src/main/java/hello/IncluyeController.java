@@ -62,4 +62,27 @@ public class IncluyeController {
 		
 		return dto;
 	}
+	
+	@PostMapping("/get")
+	public @ResponseBody Iterable<IncluyeDTO> all (String idusuario, int idsemana) {
+		
+		Iterable<Incluye> list = new ArrayList<>();
+		ArrayList<IncluyeDTO> listDTO = new ArrayList<>();
+		
+		Iterator<Incluye> iterator;
+		Incluye aux;
+		
+		list = incluyeRepository.findAll();
+		
+		iterator = list.iterator();
+		
+		while (iterator.hasNext()) {
+			aux = iterator.next();
+			if (aux.getIncluyeid().getIdusuario().equals(idusuario) && aux.getIncluyeid().getIdsemana() == idsemana) {
+				listDTO.add(new IncluyeDTO(aux.getIncluyeid().getIdtramo(), aux.getIncluyeid().getIdusuario(), aux.getIncluyeid().getIdsemana(), aux.getSecuencialidad(), aux.isEscategoria(), aux.getIncluyeid().getIdcomidaprincipal(), aux.getIncluyeid().getIdcomidasecundaria()));
+			}
+		}
+		
+		return listDTO;
+	}
 }
