@@ -1,8 +1,6 @@
 package hello;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,15 +25,12 @@ public class CalendarioController {
 
 		list = calendarioRepository.findAll();
 		
-		
-		
 		list.forEach((n) -> {
 			if (n.getCalendarioId().getIdcalendario() >= id.getIdcalendario()) {
 				id.setIdcalendario(n.getCalendarioId().getIdcalendario() +1);
 			}
 		});
-		
-		
+
 		id.setIdusuario(idusuario);
 		
 		c.setCalendarioId(id);
