@@ -25,5 +25,18 @@ public class EmployeeController {
 		
 		return emp;
 	}
+	
+	@PostMapping("/login")
+	public @ResponseBody Boolean login(String email, String password) {
+		boolean result = false;
+		
+		Employee employee = employeeRepository.findByEmail(email);
+		
+		if(employee != null && employee.getPassword().equals(password)) {
+			result = true;
+		}
+		
+		return result;
+	}
 
 }
