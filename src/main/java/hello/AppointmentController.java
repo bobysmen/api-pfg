@@ -2,6 +2,7 @@ package hello;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,32 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/today")
-	public @ResponseBody Iterable<Appointment>add(Date dateToday) {
+	public @ResponseBody Iterable<Appointment> allTodayAppointment (Date dateToday, int id_employee) {
 		
-		Iterable<Appointment> list = new ArrayList<>();
+		Iterable<Appointment> listAux = new ArrayList<>();
+		List<Appointment> listFinal = new ArrayList<>();
 		
-		list = appointmentRepository.findAllByDate(dateToday);
+		listAux = appointmentRepository.findAllByDate(dateToday);
 		
-		return list;
+		for(Appointment a : listAux ){
+			if(a.getId_employee() == id_employee) {
+				listFinal.add(a);
+			}
+		}
+		
+		return listFinal;
+	}
+	
+	@PostMapping("/add")
+	public @ResponseBody Appointment add (@RequestBody Appointment appointment) {
+		Appointment a = null;
+		
+		if(!appointmentRepository.findById(appointment.getId()).isPresent()) {
+			a = appointment;
+			appointmentRepository.save(a);
+		}
+		
+		return a;
 	}
 	
 }

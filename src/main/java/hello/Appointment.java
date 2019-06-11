@@ -1,6 +1,5 @@
 package hello;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +16,9 @@ public class Appointment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
 	private int id;
-	private Date date;
+	private String date;
+	private int id_patient;
+	private int id_employee;
 	
 	
 	public int getId() {
@@ -26,12 +27,26 @@ public class Appointment {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
+	public int getId_patient() {
+		return id_patient;
+	}
+	public void setId_patient(int id_patient) {
+		this.id_patient = id_patient;
+	}
+	public int getId_employee() {
+		return id_employee;
+	}
+	public void setId_employee(int id_employee) {
+		this.id_employee = id_employee;
+	}
+	
+	
 	
 	
 	
