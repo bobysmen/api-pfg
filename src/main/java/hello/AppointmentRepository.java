@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
 
-	public Iterable<Appointment> findAllByDate(Date dateToday);
+	public Iterable<Appointment> findAllByDate(String dateToday);
 	
 }

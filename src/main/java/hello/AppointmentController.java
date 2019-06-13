@@ -21,7 +21,7 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/today")
-	public @ResponseBody Iterable<Appointment> allTodayAppointment (Date dateToday, int id_employee) {
+	public @ResponseBody Iterable<Appointment> allTodayAppointment (String dateToday, int id_employee) {
 		
 		Iterable<Appointment> listAux = new ArrayList<>();
 		List<Appointment> listFinal = new ArrayList<>();
