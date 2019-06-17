@@ -17,6 +17,7 @@ public class Diagnosis {
 	private int id;
 	private String description;
 	private String treatment;
+	private int appointment;
 	
 	
 	public int getId() {
@@ -37,7 +38,12 @@ public class Diagnosis {
 	public void setTreatment(String treatment) {
 		this.treatment = treatment;
 	}
-	
+	public int getAppointment() {
+		return appointment;
+	}
+	public void setAppointment(int appointment) {
+		this.appointment = appointment;
+	}
 	
 	
 }

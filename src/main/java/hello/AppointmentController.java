@@ -21,7 +21,7 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/today")
-	public @ResponseBody Iterable<Appointment> allTodayAppointment (String dateToday, int id_employee) {
+	public @ResponseBody Iterable<Appointment> allTodayAppointment (String dateToday, int employee) {
 		
 		Iterable<Appointment> listAux = new ArrayList<>();
 		List<Appointment> listFinal = new ArrayList<>();
@@ -29,7 +29,24 @@ public class AppointmentController {
 		listAux = appointmentRepository.findAllByDate(dateToday);
 		
 		for(Appointment a : listAux ){
-			if(a.getId_employee() == id_employee) {
+			if(a.getEmployee() == employee) {
+				listFinal.add(a);
+			}
+		}
+		
+		return listFinal;
+	}
+	
+	@PostMapping("/allPerPatient")
+	public @ResponseBody Iterable<Appointment> allPerPatient (int patient) {
+		
+		Iterable<Appointment> listAux = new ArrayList<>();
+		List<Appointment> listFinal = new ArrayList<>();
+		
+		listAux = appointmentRepository.findAllByPatient(patient);
+		
+		for(Appointment a : listAux ){
+			if(a.getPatient() == patient) {
 				listFinal.add(a);
 			}
 		}

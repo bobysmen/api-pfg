@@ -17,8 +17,8 @@ public class Appointment {
 	@Column(columnDefinition = "serial")
 	private int id;
 	private String date;
-	private int id_patient;
-	private int id_employee;
+	private int patient;
+	private int employee;
 	
 	
 	public int getId() {
@@ -33,18 +33,19 @@ public class Appointment {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getId_patient() {
-		return id_patient;
+	public int getPatient() {
+		return patient;
 	}
-	public void setId_patient(int id_patient) {
-		this.id_patient = id_patient;
+	public void setPatient(int patient) {
+		this.patient = patient;
 	}
-	public int getId_employee() {
-		return id_employee;
+	public int getEmployee() {
+		return employee;
 	}
-	public void setId_employee(int id_employee) {
-		this.id_employee = id_employee;
+	public void setEmployee(int employee) {
+		this.employee = employee;
 	}
+
 	
 	
 	
