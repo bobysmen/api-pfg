@@ -8,5 +8,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 
 	public Iterable<Appointment> findAllByDate(String dateToday);
 	public Iterable<Appointment> findAllByPatient(int patient);
+	public Iterable<Appointment> findAllByEmployee(int employee);
 	
 }

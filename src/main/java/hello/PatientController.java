@@ -2,6 +2,7 @@ package hello;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,15 @@ public class PatientController {
 		list = patientRepository.findAll();
 		
 		return list;
-}
+	}
+	
+	@PostMapping("/getPatientById")
+	public @ResponseBody Optional<Patient> getPatientById(int patient) {
+		Optional<Patient> pat = null;
+		
+		pat = patientRepository.findById(patient);
+		
+		return pat;
+	}
 
 }

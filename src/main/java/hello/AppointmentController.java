@@ -21,15 +21,21 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/today")
-	public @ResponseBody Iterable<Appointment> allTodayAppointment (String dateToday, int employee) {
+	public @ResponseBody Iterable<Appointment> allTodayAppointment (String date, int employee) {
 		
 		Iterable<Appointment> listAux = new ArrayList<>();
 		List<Appointment> listFinal = new ArrayList<>();
+		String onlyDate;
 		
-		listAux = appointmentRepository.findAllByDate(dateToday);
+		String [] dateSplitToday = date.split(" ");
+		
+		onlyDate = dateSplitToday[0];
+		
+		listAux = appointmentRepository.findAllByEmployee(employee);
 		
 		for(Appointment a : listAux ){
-			if(a.getEmployee() == employee) {
+			String [] dateSplit = a.getDate().split(" ");
+			if(dateSplit[0].equals(onlyDate)) {
 				listFinal.add(a);
 			}
 		}
