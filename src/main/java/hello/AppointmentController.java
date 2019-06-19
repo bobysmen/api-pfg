@@ -43,6 +43,24 @@ public class AppointmentController {
 		return listFinal;
 	}
 	
+	@PostMapping("/perDay")
+	public @ResponseBody Iterable<Appointment> allPerDayAppointment (String date, int employee) {
+		
+		Iterable<Appointment> listAux = new ArrayList<>();
+		List<Appointment> listFinal = new ArrayList<>();
+		
+		listAux = appointmentRepository.findAllByEmployee(employee);
+		
+		for(Appointment a : listAux ){
+			String [] dateSplit = a.getDate().split(" ");
+			if(dateSplit[0].equals(date)) {
+				listFinal.add(a);
+			}
+		}
+		
+		return listFinal;
+	}
+	
 	@PostMapping("/allPerPatient")
 	public @ResponseBody Iterable<Appointment> allPerPatient (int patient) {
 		
