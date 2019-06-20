@@ -90,4 +90,16 @@ public class AppointmentController {
 		return a;
 	}
 	
+	@PostMapping("/delete")
+	public @ResponseBody Boolean delete (int id) {
+		boolean result = false;
+		
+		if(appointmentRepository.findById(id).isPresent()) {
+			appointmentRepository.deleteById(id);
+			result = true;
+		}
+		
+		return result;
+	}
+	
 }

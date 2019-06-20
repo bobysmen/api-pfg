@@ -39,4 +39,19 @@ public class DiagnosisController {
 		return diag;
 	}
 	
+	@PostMapping("/delete")
+	public @ResponseBody Boolean delete (int appointment) {
+		boolean result = false;
+		Diagnosis diag = null;
+		
+		diag = diagnosisRepository.findByAppointment(appointment);
+		
+		if(diag !=null) {
+			diagnosisRepository.delete(diag);
+			result = true;
+		}
+		
+		return result;
+	}
+	
 }
